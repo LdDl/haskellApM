@@ -26,9 +26,9 @@ instance (Show a) => Show (Tape a) where
 step initialize_rules (current_state, Tape pos (left_to:lll) (right_to:rrr)) = (current_state', tape')
      where  Movement pos' dir current_state' = initialize_rules current_state pos
             tape' = move dir
-           move Stand_Still = Tape pos' (left_to:lll) (right_to:rrr)
+            move Stand_Still = Tape pos' (left_to:lll) (right_to:rrr)
             move Step_Left = Tape left_to lll (pos':right_to:rrr)
-           move Step_Right = Tape right_to (pos':left_to:lll) rrr
+            move Step_Right = Tape right_to (pos':left_to:lll) rrr
 run_machine initialize_rules stop start tape = steps ++ [last_step]
       where (steps, last_step:_) = break ((== stop) . fst) $ iterate (step initialize_rules) (start, tape)
  
